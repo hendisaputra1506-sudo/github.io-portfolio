@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Hendi Saputra</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="nav-brand">Hendi Saputra</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="portfolio.html" class="current-page">Portfolio</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <main class="portfolio-section">
+        <div class="portfolio-header">
+            <h1>My Works</h1>
+            <p>Berikut adalah kumpulan proyek seni dan coding yang pernah saya kerjakan.</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="filter-pills">
+                <button class="pill-btn active" data-filter="all">Semua</button>
+                <button class="pill-btn" data-filter="art">Karya Seni</button>
+                <button class="pill-btn" data-filter="code">Proyek Kode</button>
+            </div>
+            <button class="sort-btn" data-sort="newest">
+                <i class="fas fa-sort-amount-down"></i> 
+            </button>
+        </div>
+
+        <div class="project-grid">
+            <div class="project-card" data-category="art" data-date="2025-08-17">
+                <img src="img/lip-drawing-1.jpg" alt="Lip Drawing 1">
+                <div class="card-content">
+                    <span class="category">Karya Seni</span>
+                    <h3>Mempesona</h3>
+                    <p>Sebuah gambar bibir seorang perempuan yang digambar menggunakan ballpoint 10 warna</p>
+                    <div class="project-time">
+                        <i class="fas fa-calendar-alt"></i> <span class="time-ago">
+                        </span> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="art" data-date="2025-08-22">
+                <img src="img/eye-drawing-1.jpg" alt="Judul Proyek Kode 1">
+                <div class="card-content">
+                    <span class="category"> Karya Seni</span>
+                    <h3>Jendela Jiwa</h3>
+                    <p>Mata adalah "jendela jiwa" yang melihat dunia. <br>Gambar mata yang saya buat dengan pen berwarna biru tua. <br><a href="https://pin.it/i/5gXKo2LUx/" target="_blank" class="ref-link">Lihat Referensi</a>
+                    </p>
+                    <div class="project-time">
+                        <i class="fas fa-calendar-alt"></i> <span class="time-ago">
+                        </span> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="art" data-date="2025-08-26">
+                <img src="img/eye-drawing-3.jpg" alt="">
+                <div class="card-content">
+                    <span class="category">Karya Seni</span>
+                    <h3>Pemandangan Tersembunyi</h3>
+                    <p>Terkadang, seluruh dunia bisa ditemukan dalam sebuah tatapan. Apa yang kamu lihat di dalamnya?</p>
+                    <div class="project-time">
+                        <i class="fas fa-calendar-alt"></i> <span class="time-ago">
+                        </span> 
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="code"
+            data-date="2025-08-17">
+                <img src="" alt="">
+                <div class="card-content">
+                    <span class="category">Proyek Kode</span>
+                    <h3>Code</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fugiat est fuga.</p>
+                    <div class="project-time">
+                        <i class="fas fa-calendar-alt"></i> <span class="time-ago">
+                        </span> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Copyright 2025 Hendi Saputra. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
