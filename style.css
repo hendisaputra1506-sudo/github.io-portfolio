@@ -255,15 +255,22 @@ body.light-mode body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 2rem; 
 }
-.project-card { 
-    background-color: #1e1e1e; 
-    border-radius: 10px; 
-    overflow: hidden; 
-    text-align: left; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    opacity: 0; 
+.project-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    
+    /* Aturan yang hilang & penting untuk layout */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    /* Aturan untuk animasi */
+    opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
 }
 .project-card.animate-in {
     opacity: 1;
@@ -278,9 +285,13 @@ body.light-mode body {
     height: 200px; 
     object-fit: cover; 
 }
-.card-content { 
-    padding: 1.5rem; 
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
+
 .card-content .category { 
     display: inline-block; 
     background-color: rgba(74, 144, 226, 0.2); color: #4a90e2; 
@@ -300,12 +311,22 @@ body.light-mode body {
     color: #a0a0a0; 
     margin-bottom: 1rem;
 }
+
+
+/* ===== GAYA UNTUK FOOTER KARTU PROYEK ===== */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* <-- INI ADALAH KUNCINYA */
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+}
 .project-time {
     display: flex;
     align-items: center;
     color: #a0a0a0;
     font-size: 0.85rem;
-    margin-bottom: 1rem;
 }
 .project-time i {
     margin-right: 5px;
@@ -320,63 +341,168 @@ body.light-mode body {
 .ref-link:hover { 
     color: #81b9f7; 
 }
-.about-container { 
-    display: flex; 
-    align-items: center; 
-    gap: 4rem; 
-    max-width: 1100px; 
-    width: 100%; 
+/* ===== GAYA HALAMAN ABOUT ===== */
+.about-section {
+    padding: 4rem 5%;
+    min-height: 80vh; /* Kembalikan min-height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.about-image { 
-    flex: 0 0 300px; 
+
+.about-container {
+    display: flex;
+    flex-direction: row; /* Desktop: Gambar di kiri, Teks & Skill di kanan */
+    align-items: flex-start;
+    gap: 4rem;
+    max-width: 1100px;
+    width: 100%;
 }
-.about-image img { 
-    width: 100%; 
-    height: 300px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 5px solid #333; 
+
+.about-image {
+    flex: 0 0 300px; /* Ukuran gambar tetap */
 }
+
+.about-image img {
+    width: 100%;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #333;
+}
+
 .about-content {
-    flex: 1; 
+    flex: 1; /* Konten teks & skill mengambil sisa ruang */
+    display: flex; /* Tambahkan flexbox di sini untuk mengatur judul, paragraf, dan skill */
+    flex-direction: column; /* Atur item secara vertikal */
+    align-items: center;
 }
-.about-content h1 { 
-    font-size: 2.5rem; 
-    color: #ffffff; 
-    margin-bottom: 1.5rem; 
+
+.about-content h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
 }
-.about-content p { 
-    color: #a0a0a0; 
-    margin-bottom: 1.5rem; 
-    line-height: 1.8; 
+
+.about-content p {
+    color: #a0a0a0;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
-.skills-container { 
-    display: flex; 
-    gap: 3rem; 
-    margin-top: 2rem; 
+
+.cv-intro {
+    margin-top: 2rem; /* Jarak dari paragraf di atas */
+    margin-bottom: -0.5rem; /* Sedikit kurangi jarak ke tombol di bawah */
+    font-style: italic; /* Opsional: buat teks sedikit miring agar menonjol */
+    color: #a0a0a0;
 }
-.skill-category h3 { 
-    font-size: 1.2rem; 
-    color: #4a90e2; 
-    margin-bottom: 1rem; 
-    border-bottom: 2px solid #333; padding-bottom: 0.5rem; 
+
+/* =================================
+   GAYA UNTUK TOMBOL DOWNLOAD CV
+   ================================= */
+
+.cv-button {
+    text-align: center;
+    width: 20rem;
+    display: inline-block;
+    padding: 12px 24px;
+    margin-top: .1rem; /* Jarak dari paragraf di atasnya */
+    margin-bottom: .1rem;
+    border: 2px solid #4a90e2; /* Border dengan warna aksen */
+    color: #4a90e2; /* Teks dengan warna aksen */
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px; /* Membuat bentuk pill */
+    position: relative; /* Diperlukan untuk efek hover */
+    overflow: hidden; /* Sembunyikan ::before yang meluap */
+    z-index: 1;
+    transition: color 0.4s ease-in-out;
 }
-.skill-category ul { 
-    list-style: none; 
-    padding: 0; 
+
+.cv-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* Awalnya lebar adalah 0 */
+    height: 100%;
+    background-color: #4a90e2; /* Warna isian saat hover */
+    z-index: -1;
+    transition: width 0.4s ease-in-out; /* Animasi untuk lebar */
 }
-.skill-category ul li { 
-    color: #a0a0a0; 
-    margin-bottom: 0.5rem; 
-    padding-left: 1rem; 
-    position: relative; 
+
+.cv-button:hover {
+    color: #ffffff; /* Ubah warna teks menjadi putih saat hover */
 }
-.skill-category ul li::before { 
-    content: '»'; 
-    color: #4a90e2; 
-    position: absolute; 
-    left: 0; 
+
+.cv-button:hover::before {
+    width: 100%; /* Lebar menjadi 100% saat di-hover */
 }
+
+/* Penyesuaian untuk Light Mode */
+body.light-mode .cv-button {
+    color: #4a90e2;
+    border-color: #4a90e2;
+}
+body.light-mode .cv-button:hover {
+    color: #ffffff;
+}
+
+/* ===== GAYA UNTUK BAGIAN KEAHLIAN (PILL STYLE) di DALAM ABOUT-CONTENT ===== */
+.skills-container {
+    width: 100%; /* Memastikan ini mengisi seluruh lebar yang tersedia di kolom */
+    margin-top: 2rem; /* Jarak dari paragraf di atasnya */
+}
+
+.skill-category {
+    margin-bottom: 2rem; /* Jarak antar kategori skill */
+}
+
+.skill-category h3 {
+    font-size: 1.2rem;
+    color: #4a90e2; /* Warna aksen biru */
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #333; /* Garis pemisah */
+    padding-bottom: 0.5rem;
+}
+
+.skill-pills {
+    display: flex;
+    flex-wrap: wrap; /* Izinkan pill turun ke baris baru */
+    gap: 10px; /* Jarak antar pill */
+}
+
+.skill-pill {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #444;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-pill:hover {
+    transform: translateY(-3px);
+    background-color: #353535;
+}
+
+/* Penyesuaian untuk Light Mode */
+body.light-mode .skill-category h3 {
+    border-bottom-color: #e0e0e0;
+}
+body.light-mode .skill-pill {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #ccc;
+}
+body.light-mode .skill-pill:hover {
+    background-color: #dcdcdc;
+}
+
+
 .contact-container { 
     max-width: 700px; 
     width: 100%; 
@@ -637,14 +763,59 @@ body.light-mode .under-development-overlay span {
     .project-grid { grid-template-columns: 1fr; }
     
     /* ===== ABOUT SECTION (MOBILE) ===== */
+    .about-section {
+        padding: 3rem 3%; /* Sesuaikan padding untuk mobile */
+        min-height: auto; /* Agar tinggi auto di mobile */
+    }
+
     .about-container {
-        flex-direction: column;
+        flex-direction: column; /* Di mobile: gambar di atas, teks & skill di bawah */
         text-align: center;
         gap: 2rem;
     }
-    .about-image { flex: none; margin-bottom: 1rem; }
-    .about-image img { width: 200px; height: 200px; }
-    .skills-container { flex-direction: column; gap: 1.5rem; }
+
+    .about-image {
+        flex: none;
+        margin-bottom: 1rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .about-image img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-content {
+        align-items: center; /* Pusatkan item di dalam about-content untuk mobile */
+    }
+
+    .about-content h1 {
+        text-align: center;
+    }
+
+    .about-content p {
+        text-align: center;
+    }
+    
+    .cv-button {
+        align-self: center;
+        max-width: 14rem; /* Pusatkan tombol di mobile */
+    }
+    .skills-container {
+        margin-top: 1.5rem; /* Jarak yang sedikit lebih kecil di mobile */
+    }
+
+    .skill-category h3 {
+        text-align: center; /* Pusatkan judul kategori skill */
+        border-bottom: none; /* Hapus garis bawah di mobile */
+        padding-bottom: 0;
+        margin-bottom: 0.8rem;
+    }
+
+    .skill-pills {
+        justify-content: center; /* Pusatkan pill skill di mobile */
+    }
 
     /* ===== CONTACT SECTION (MOBILE) ===== */
     .contact-container { padding: 2rem; }
