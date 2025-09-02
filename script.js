@@ -1,3 +1,4 @@
+// Menunggu sampai seluruh halaman HTML selesai dimuat
 document.addEventListener('DOMContentLoaded', function() {
 
     // ===== FUNGSIONALITAS FILTER DAN SORT PORTFOLIO =====
@@ -10,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterButtons.length > 0 && projectCards.length > 0) {
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
+                // Hapus kelas 'active' dari semua tombol filter
                 filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Tambahkan kelas 'active' ke tombol yang baru saja diklik
                 this.classList.add('active');
 
                 const filter = this.getAttribute('data-filter');
@@ -31,27 +34,30 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sortButton && projectGrid) {
         sortButton.addEventListener('click', function() {
             const currentSort = this.getAttribute('data-sort');
-            const cardsArray = Array.from(projectCards);
+            const cardsArray = Array.from(projectCards); // Ubah NodeList menjadi Array
+
             cardsArray.sort((a, b) => {
                 const dateA = new Date(a.getAttribute('data-date'));
                 const dateB = new Date(b.getAttribute('data-date'));
 
+                // Jika urutan saat ini adalah 'newest', ubah ke 'oldest' dan sebaliknya
                 if (currentSort === 'newest') {
-                    return dateA - dateB; 
+                    return dateA - dateB; // Urutkan dari terlama ke terbaru
                 } else {
-                    return dateB - dateA; 
+                    return dateB - dateA; // Urutkan dari terbaru ke terlama
                 }
             });
 
             // Ubah status dan ikon tombol
             if (currentSort === 'newest') {
                 this.setAttribute('data-sort', 'oldest');
-                this.innerHTML = '<i class="fas fa-sort-amount-up"></i>';
+                this.innerHTML = '<i class="fas fa-sort-amount-up"></i>'; // Ikon terlama
             } else {
                 this.setAttribute('data-sort', 'newest');
-                this.innerHTML = '<i class="fas fa-sort-amount-down"></i>'; 
+                this.innerHTML = '<i class="fas fa-sort-amount-down"></i>'; // Ikon terbaru
             }
 
+            // Kosongkan grid dan isi kembali dengan kartu yang sudah diurutkan
             projectGrid.innerHTML = '';
             cardsArray.forEach(card => {
                 projectGrid.appendChild(card);
@@ -86,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const projectDate = new Date(dateAttribute);
                 const now = new Date();
                 const diffTime = Math.abs(now.getTime() - projectDate.getTime());
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Selisih dalam hari
 
                 let timeAgoText = '';
 
@@ -115,17 +121,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Panggil fungsi ini saat halaman dimuat
     updateProjectTimeAgo();
 
+    // --- Fungsi untuk Animasi Kemunculan Proyek ---
     function animateProjectCards() {
         projectCards.forEach((card, index) => {
-            
+            // Beri sedikit delay untuk setiap kartu agar munculnya berurutan
             setTimeout(() => {
                 card.classList.add('animate-in');
-            }, index * 100); 
+            }, index * 100); // Delay 100ms untuk setiap kartu
         });
     }
 
+    // Panggil fungsi animasi saat halaman dimuat
     animateProjectCards();
+
+
+
+    // Penutup dari DOMContentLoaded
+    
+    // (Fungsi Theme Toggle Anda bisa diletakkan di sini jika ada)
 
 });
