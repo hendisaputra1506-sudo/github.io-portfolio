@@ -3,172 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Hendi Saputra</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Galeri Karya & Eksperimen — Hendi Saputra</title>
+    <meta name="description" content="Koleksi karya seni lukis pena realistis dan eksperimen web interaktif oleh Hendi Saputra.">
+    <meta property="og:title" content="Galeri Karya & Eksperimen — Hendi Saputra">
+    <meta property="og:description" content="Eksplorasi detail arsiran pena bolpoin realistis dan keanggunan rekayasa web interaktif.">
+    <meta property="og:image" content="img/hero-image400.jpg">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <a href="index.html" class="nav-brand">Hendi Saputra</a>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="portfolio.html" class="current-page">Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+    <!-- Ambient Mist & Texture -->
+    <div class="ambient-mist ambient-mist-1"></div>
+    <div class="ambient-mist ambient-mist-2"></div>
+    <div class="paper-texture"></div>
+
+    <!-- Fluid Ink Droplet Cursor -->
+    <div class="ink-cursor-dot"></div>
+    <div class="ink-cursor-ring"><span class="cursor-caption"></span></div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <a href="index.html" class="brand-identity">
+            <span class="brand-emblem"></span>
+            <span class="brand-name">Hendi Saputra</span>
+            <span class="brand-subtitle">Atelier</span>
+        </a>
+
+        <nav class="navigation-menu">
+            <a href="index.html" class="nav-anchor"><i class="fas fa-cube" style="color: var(--teal-light); margin-right: 4px;"></i>Meja Studio 3D</a>
+            <a href="portfolio.html" class="nav-anchor active">Galeri Karya</a>
+            <a href="about.html" class="nav-anchor">Tentang</a>
+            <a href="contact.html" class="nav-anchor">Hubungi</a>
         </nav>
-        <div class="hamburger-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+
+        <div class="studio-status-pill">
+            <span class="pulse-dot"></span>
+            <span>Terbuka untuk Kolaborasi</span>
         </div>
+
+        <button class="nav-mobile-trigger" aria-label="Buka menu navigasi" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
     </header>
 
-    <main class="portfolio-section">
-        <div class="portfolio-header">
-            <h1>My Works</h1>
-            <p>Berikut adalah kumpulan proyek seni dan coding yang pernah saya kerjakan.</p>
-        </div>
-
-        <div class="filter-bar">
-            <div class="filter-pills">
-                <button class="pill-btn active" data-filter="all">Semua</button>
-                <button class="pill-btn" data-filter="art">Karya Seni</button>
-                <button class="pill-btn" data-filter="code">Proyek Kode</button>
+    <main>
+        <!-- Gallery Header -->
+        <section class="exhibit-hero">
+            <div class="artistic-badge">
+                <i class="fas fa-layer-group"></i> Pameran Koleksi Pilihan
             </div>
-            <button class="sort-btn" data-sort="newest">
-                <i class="fas fa-sort-amount-down"></i> 
-            </button>
-        </div>
+            <h1>Ruang Karya & Eksperimen</h1>
+            <p style="color: var(--text-silver); font-size: 1.12rem; font-weight: 300;">
+                Menjelajahi kelembutan gradasi warna dan kedalaman tatapan mata melalui arsiran pena, serta eksperimen rekayasa web interaktif yang bernyawa.
+            </p>
 
-        <!-- ART -->
-        <div class="project-grid">
-            <div class="project-card" data-category="art" data-date="2025-08-17">
-                <img src="img/lip-drawing-1.jpg" alt="lip drawing 1">
-                <div class="card-content">
-                    <div class="card-body">
-                        <span class="category">Karya Seni</span>
-                        <h3>Mempesona</h3>
-                        <p>Sebuah gambar bibir seorang perempuan yang digambar menggunakan pen 10 warna</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="project-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="time-ago"></span>
-                        </div>
-                    </div>
+            <!-- Filter & Sort Controls -->
+            <div class="exhibit-filter-nav">
+                <div class="filter-pill-group">
+                    <button class="filter-button active" data-filter="all">Semua Koleksi</button>
+                    <button class="filter-button" data-filter="art">Karya Seni (Pena)</button>
+                    <button class="filter-button" data-filter="code">Eksperimen Kode</button>
                 </div>
-            </div>
 
-            <div class="project-card" data-category="art" data-date="2025-08-22">
-                <img src="img/eye-drawing-1.jpg" alt="eye drawing 1">
-                <div class="card-content">
-                    <div class="card-body">
-                        <span class="category">Karya Seni</span>
-                        <h3>Jendela Jiwa</h3>
-                        <p>Mata adalah "jendela jiwa" yang melihat dunia. <br>Gambar mata yang saya buat dengan pen berwarna biru tua.
-                        </p>
+                <button class="exhibit-sorter" data-sort="newest" aria-label="Urutkan Pameran">
+                    <i class="fas fa-arrow-down-wide-short"></i> <span>Karya Terbaru</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Exhibit Grid -->
+        <section class="exhibit-grid">
+
+            <!-- ART 1: Mempesona (Bibir) -->
+            <div class="exhibit-card" data-category="art" data-date="2025-08-17">
+                <div class="card-soft-glare"></div>
+                <div class="exhibit-media-wrap">
+                    <img src="img/lip-drawing-1.jpg" alt="Lukisan bibir dengan bolpoin 10 warna" loading="lazy">
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Goresan Seni Rupa</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
                     </div>
-                    <div class="card-footer">
-                        <div class="project-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="time-ago"></span>
-                        </div>
-                        <a href="https://pin.it/i/5gXKo2LUx/" class="ref-link">Lihat Referensi</a>
+                    <h3>Mempesona</h3>
+                    <p>Eksplorasi kelembutan dan kilau bibir seorang perempuan, diwujudkan secara menyeluruh menggunakan bolpoin 10-warna melalui percampuran arsiran halus.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Medium: Bolpoin 10-Warna</span>
+                        <span class="exhibit-view-action">Kagumi <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="art" data-date="2025-08-26">
-                <img src="img/eye-drawing-3.jpg" alt="eye drawing 3">
-                <div class="card-content">
-                    <div class="card-body">
-                        <span class="category">Karya Seni</span>
-                        <h3>Pemandangan Tersembunyi</h3>
-                        <p>Terkadang, seluruh dunia bisa ditemukan dalam sebuah tatapan. Apa yang kamu lihat di dalamnya?</p>
+            <!-- ART 2: Jendela Jiwa -->
+            <div class="exhibit-card" data-category="art" data-date="2025-08-22">
+                <div class="card-soft-glare"></div>
+                <div class="exhibit-media-wrap">
+                    <img src="img/eye-drawing-1.jpg" alt="Lukisan mata dengan bolpoin biru tua" loading="lazy">
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Goresan Seni Rupa</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
                     </div>
-                    <div class="card-footer">
-                        <div class="project-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="time-ago"></span>
-                        </div>
+                    <h3>Jendela Jiwa</h3>
+                    <p>Mata adalah cermin batin yang merekam semesta. Digambar dengan ketelitian bolpoin biru tua untuk menonjolkan kedalaman iris dan pantulan cahaya alami.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Medium: Bolpoin Biru Tua</span>
+                        <a href="https://pin.it/i/5gXKo2LUx/" target="_blank" rel="noopener noreferrer" class="exhibit-view-action">Referensi <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="art" data-date="2025-09-02">
-                <img src="img/eye-drawing-4.jpg" alt="eye drawing 4">
-                <div class="card-content">
-                    <div class="card-body">
-                        <span class="category">Karya Seni</span>
-                        <h3>Realisme Mata</h3>
-                        <p>Ilustrasi detail yang menangkap ekspresi emosional. Dibuat sepenuhnya menggunakan pen 10 warna untuk mengeksplorasi perpaduan warna dan tekstur dalam mencapai tampilan yang realistis.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="project-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="time-ago"></span>
-                        </div>
-                    </div>
+            <!-- ART 3: Pemandangan Tersembunyi -->
+            <div class="exhibit-card" data-category="art" data-date="2025-08-26">
+                <div class="card-soft-glare"></div>
+                <div class="exhibit-media-wrap">
+                    <img src="img/eye-drawing-3.jpg" alt="Ilustrasi mata pena pemandangan tersembunyi" loading="lazy">
                 </div>
-            </div>
-            <div class="project-card" data-category="art" data-date="2025-09-02">
-                <img src="img/eye-drawing-2.png" alt="eye drawing 2">
-                <div class="card-content">
-                    <div class="card-body">
-                        <span class="category">Feathered Vision</span>
-                        <h3>Mempesona</h3>
-                        <p> Melihat dunia dengan kelembutan dan keringanan sehelai bulu. Sebuah visi tentang kebebasan, mimpi, dan kepekaan terhadap hal-hal kecil yang indah.</p>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Goresan Seni Rupa</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
                     </div>
-                    <div class="card-footer">
-                        <div class="project-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="time-ago"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card" data-category="art" data-date="2025-09-02">
-                <img src="img/eye-drawing-5.jpg" alt="eye drawing 5">
-                <div class="card-content">
-                    <div class="card-body">
-                        <span class="category">Karya Seni</span>
-                        <h3>Pandangan Berwarna</h3>
-                        <p>Eksplorasi detail dan spektrum warna pada mata, diwujudkan melalui teknik pen berwarna. Karya ini menonjolkan keunikan iris dengan sentuhan warna hijau kebiruan yang kontras, memberikan kedalaman pada ekspresi.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="project-time">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="time-ago"></span>
-                        </div>
+                    <h3>Pemandangan Tersembunyi</h3>
+                    <p>Terkadang, seluruh semesta bisa dirasakan dalam satu kedipan tatapan. Menekankan ketegasan bulu mata dan kelembutan bayangan kelopak mata.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Medium: Bolpoin di Kertas</span>
+                        <span class="exhibit-view-action">Kagumi <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- CODE -->
-            <div class="project-card" data-category="code"
-            data-date="2025-08-17">
-                <img src="" alt="?">
-                <div class="card-content">
-                    <span class="category">Proyek Kode</span>
-                    <h3>Code</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fugiat est fuga.</p>
-                    <div class="project-time">
-                        <i class="fas fa-calendar-alt"></i> <span class="time-ago">
-                        </span> 
+            <!-- ART 4: Realisme Mata -->
+            <div class="exhibit-card" data-category="art" data-date="2025-09-02">
+                <div class="card-soft-glare"></div>
+                <div class="exhibit-media-wrap">
+                    <img src="img/eye-drawing-4.jpg" alt="Realisme mata dengan pen 10 warna" loading="lazy">
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Goresan Seni Rupa</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
+                    </div>
+                    <h3>Realisme Mata</h3>
+                    <p>Menangkap emosi dan ekspresi yang jujur. Menguji batas perpaduan arsiran multi-warna demi mencapai ilusi tekstur dan kehangatan yang hidup.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Medium: Bolpoin Multi-Warna</span>
+                        <span class="exhibit-view-action">Kagumi <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- ART 5: Feathered Vision -->
+            <div class="exhibit-card" data-category="art" data-date="2025-09-02">
+                <div class="card-soft-glare"></div>
+                <div class="exhibit-media-wrap">
+                    <img src="img/eye-drawing-2.png" alt="Feathered Vision - Seni mata dan kelembutan bulu" loading="lazy">
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Goresan Seni Rupa</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
+                    </div>
+                    <h3>Feathered Vision</h3>
+                    <p>Melihat dunia dengan kelembutan dan keringanan sehelai bulu. Sebuah metafora tentang kebebasan berimajinasi dan ketenangan pikiran.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Medium: Bolpoin di Kertas</span>
+                        <span class="exhibit-view-action">Kagumi <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ART 6: Pandangan Berwarna -->
+            <div class="exhibit-card" data-category="art" data-date="2025-09-02">
+                <div class="card-soft-glare"></div>
+                <div class="exhibit-media-wrap">
+                    <img src="img/eye-drawing-5.jpg" alt="Pandangan berwarna dengan sentuhan iris hijau kebiruan" loading="lazy">
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Goresan Seni Rupa</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
+                    </div>
+                    <h3>Pandangan Berwarna</h3>
+                    <p>Eksplorasi spektrum warna pada iris dengan sentuhan gradasi hijau kebiruan yang kontras, menghadirkan karakter tatapan yang memikat.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Medium: Bolpoin Multi-Warna</span>
+                        <span class="exhibit-view-action">Kagumi <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CODE 1: Generative Ink Canvas & Interactive Portfolio -->
+            <div class="exhibit-card" data-category="code" data-date="2025-09-10">
+                <div class="card-soft-glare"></div>
+                <div class="code-craft-wrap">
+                    <i class="fas fa-water code-craft-watermark"></i>
+                    <div class="code-craft-badge">
+                        <i class="fas fa-sparkles"></i> Eksperimen Interaktif
+                    </div>
+                    <h4 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-ivory);">Generative Ink Waves Engine</h4>
+                    <p class="code-craft-snippet">
+                        &ldquo;Mengubah formula matematika trigonometri menjadi gelombang sutra dan partikel udara yang mengalir merespons sentuhan kursor.&rdquo;
+                    </p>
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Rekayasa Digital</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
+                    </div>
+                    <h3>Generative Ink & Wave Canvas</h3>
+                    <p>Arsitektur visual portofolio ini: simulasi gelombang sutra dinamis berbasis Canvas 2D, perspektif miring 3D organik, dan interaksi kursor tetesan tinta.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Teknologi: HTML5 &bull; Canvas 2D &bull; JS</span>
+                        <a href="https://github.com/hendi-saputra" target="_blank" rel="noopener noreferrer" class="exhibit-view-action">GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CODE 2: Automasi Alur Kerja & Ekosistem Digital -->
+            <div class="exhibit-card" data-category="code" data-date="2025-09-15">
+                <div class="card-soft-glare"></div>
+                <div class="code-craft-wrap">
+                    <i class="fas fa-infinity code-craft-watermark"></i>
+                    <div class="code-craft-badge">
+                        <i class="fas fa-network-wired"></i> Sistem & Integrasi
+                    </div>
+                    <h4 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-ivory);">Automasi Alur Kerja Terintegrasi</h4>
+                    <p class="code-craft-snippet">
+                        &ldquo;Menghubungkan layanan API dan memprogram otomasi tugas berulang agar kreativitas manusia dapat tercurahkan seutuhnya.&rdquo;
+                    </p>
+                </div>
+                <div class="exhibit-card-body">
+                    <div class="exhibit-card-meta">
+                        <span class="exhibit-category-text">Rekayasa Digital</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="far fa-clock"></i> <span class="time-text"></span></span>
+                    </div>
+                    <h3>Automated Workflow Pipeline</h3>
+                    <p>Pemanfaatan platform automasi modern (n8n) untuk menghubungkan webhook, manipulasi data JSON secara dinamis, dan sinkronisasi lintas platform secara otomatis.</p>
+                    <div class="exhibit-card-footer">
+                        <span>Teknologi: n8n &bull; REST API &bull; Webhooks</span>
+                        <a href="https://github.com/hendi-saputra" target="_blank" rel="noopener noreferrer" class="exhibit-view-action">Eksplorasi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
-    <footer>
-        <p>&copy; Copyright 2025 Hendi Saputra. All Rights Reserved.</p>
+
+    <!-- Curatorial Lightbox Modal -->
+    <div class="curatorial-modal" id="curatorial-modal" role="dialog" aria-modal="true" aria-label="Apresiasi Karya Seni">
+        <div class="curatorial-dialog">
+            <button class="modal-close-trigger" id="modal-close" aria-label="Tutup apresiasi">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-artwork-stage">
+                <img src="" alt="" id="modal-artwork-img">
+            </div>
+            <div class="modal-curator-notes">
+                <h3 id="modal-artwork-title">Judul Karya</h3>
+                <p id="modal-artwork-desc">Catatan kuratorial mengenai teknik dan cerita di balik karya seni...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="curator-footer">
+        <div class="footer-inner">
+            <div class="footer-quote">
+                &ldquo;Seni adalah bentuk komunikasi tanpa kata yang melampaui batas waktu.&rdquo;
+            </div>
+            <div class="footer-rights">
+                &copy; <span class="year-indicator">2026</span> Hendi Saputra. Diciptakan dengan rasa & kode.
+            </div>
+            <div class="footer-social-icons">
+                <a href="https://wa.me/6281818488170" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/thi.hendiart/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@thi.hendiart" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://github.com/hendi-saputra" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>

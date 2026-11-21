@@ -3,45 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hendi Saputra - Artist & Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hendi Saputra — 3D Interactive Atelier & Portfolio</title>
+    <meta name="description" content="Masuki meja studio 3D interaktif Hendi Saputra. Eksplorasi karya lukis bolpoin 10-warna dan rekayasa web kreatif.">
+    <meta property="og:title" content="Hendi Saputra — 3D Interactive Atelier & Portfolio">
+    <meta property="og:description" content="Seni yang mengalir, kode yang menghidupkan. Jelajahi meja kerja 3D interaktif Hendi Saputra.">
+    <meta property="og:image" content="img/hero-image400.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Cormorant Garamond (Poetic Serif) & Plus Jakarta Sans (Clean Humanist Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="studio-3d-active">
 
-    <header class="navbar">
-        <a href="index.html" class="nav-brand">Hendi Saputra</a>
-        <nav class="nav-links">
-            <a href="index.html" class="current-page">Home</a>
-            <a href="portfolio.html">Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <div class="hamburger-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+    <!-- Subtle Studio Paper Grain -->
+    <div class="paper-texture"></div>
+
+    <!-- Fluid Ink Droplet Cursor -->
+    <div class="ink-cursor-dot"></div>
+    <div class="ink-cursor-ring"><span class="cursor-caption"></span></div>
+
+    <!-- Studio Loading Curtain -->
+    <div class="atelier-loader" id="atelier-loader">
+        <div class="loader-emblem">
+            <i class="fas fa-feather-pointed"></i>
+        </div>
+        <div class="loader-title">Meja Studio Hendi Saputra</div>
+        <div class="loader-subtitle">Menyiapkan Ruang Seni &amp; Kode 3D...</div>
+    </div>
+
+    <!-- =====================================================================
+         1. THREE.JS 3D ATELIER STAGE
+         ===================================================================== -->
+    <div id="atelier-3d-stage" aria-label="Ruang Studio 3D Interaktif Hendi Saputra"></div>
+
+    <!-- =====================================================================
+         2. 3D-TO-2D PROJECTED OBJECT HOTSPOT PINS
+         ===================================================================== -->
+    <div id="hotspot-layer">
+        <!-- Sketchbook Pin -->
+        <button class="desk-hotspot" id="pin-art" data-station="art" aria-label="Buka Buku Sketsa Karya Seni">
+            <span class="hotspot-dot"><i class="fas fa-pen-nib"></i></span>
+            <span>
+                <strong class="hotspot-label">Buku Sketsa &amp; Pena</strong><br>
+                <span class="hotspot-sub">6 Lukisan Bolpoin</span>
+            </span>
+        </button>
+
+        <!-- Monitor Pin -->
+        <button class="desk-hotspot" id="pin-code" data-station="code" aria-label="Buka Monitor Proyek Kode">
+            <span class="hotspot-dot"><i class="fas fa-code"></i></span>
+            <span>
+                <strong class="hotspot-label">Monitor Studio</strong><br>
+                <span class="hotspot-sub">Lab Kode &amp; Automasi</span>
+            </span>
+        </button>
+
+        <!-- Journal Pin -->
+        <button class="desk-hotspot" id="pin-about" data-station="about" aria-label="Buka Jurnal Biografi dan CV">
+            <span class="hotspot-dot"><i class="fas fa-book-open"></i></span>
+            <span>
+                <strong class="hotspot-label">Jurnal &amp; Berkas CV</strong><br>
+                <span class="hotspot-sub">Kisah &amp; Perjalanan</span>
+            </span>
+        </button>
+
+        <!-- Contact Envelope Pin -->
+        <button class="desk-hotspot" id="pin-contact" data-station="contact" aria-label="Buka Amplop Kontak">
+            <span class="hotspot-dot"><i class="fas fa-envelope-open-text"></i></span>
+            <span>
+                <strong class="hotspot-label">Amplop &amp; Kontak</strong><br>
+                <span class="hotspot-sub">Diskusi &amp; Kolaborasi</span>
+            </span>
+        </button>
+
+        <!-- Architect Lamp Pin -->
+        <button class="desk-hotspot warm-pin" id="pin-lamp" data-station="lamp" aria-label="Saklar Lampu Meja">
+            <span class="hotspot-dot"><i class="fas fa-lightbulb"></i></span>
+            <span>
+                <strong class="hotspot-label">Lampu Studio</strong><br>
+                <span class="hotspot-sub">Klik ubah suasana</span>
+            </span>
+        </button>
+
+        <!-- Lo-Fi Radio Pin -->
+        <button class="desk-hotspot warm-pin" id="pin-audio" data-station="audio" aria-label="Radio Musik Ambient">
+            <span class="hotspot-dot"><i class="fas fa-music"></i></span>
+            <span>
+                <strong class="hotspot-label">Radio Lo-Fi</strong><br>
+                <span class="hotspot-sub">Putar musik ambient</span>
+            </span>
+        </button>
+    </div>
+
+    <!-- =====================================================================
+         3. TOP STUDIO HUD BAR
+         ===================================================================== -->
+    <header class="studio-hud-top">
+        <a href="index.html" class="hud-brand-pill">
+            <span class="brand-emblem"></span>
+            <span class="brand-name" style="font-size: 1.25rem;">Hendi Saputra</span>
+            <span class="brand-subtitle">3D Atelier</span>
+        </a>
+
+        <div class="hud-controls-right">
+            <div class="hud-pill-btn hud-hide-mobile" title="Waktu Studio Jakarta (WIB)">
+                <i class="far fa-clock" style="color: var(--teal-light);"></i>
+                <span class="hud-clock-badge" id="studio-wib-clock">--:--:--</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">WIB</span>
+            </div>
+
+            <button class="hud-pill-btn active-mood" id="hud-lamp-btn" title="Ganti Pencahayaan Studio">
+                <i class="fas fa-sun"></i>
+                <span id="mood-label-text">Senja Studio</span>
+            </button>
+
+            <button class="hud-pill-btn" id="hud-radio-btn" title="Putar/Matikan Musik Ambient">
+                <i class="fas fa-headphones-simple"></i>
+                <span>Radio Lo-Fi</span>
+            </button>
+
+            <button class="hud-pill-btn" id="open-classic-2d-btn" title="Buka Mode Tampilan Galeri 2D">
+                <i class="fas fa-table-cells-large" style="color: var(--teal-light);"></i>
+                <span>Mode Galeri 2D</span>
+            </button>
         </div>
     </header>
 
-    <main class="hero">
-        <div class="hero-text">
-            <h1>Creative Technologist.</h1>
-            <p>Mengubah ide menjadi kenyataan visual dan interaktif melalui seni dan kode.</p>
-            <a href="portfolio.html" class="cta-button">Lihat Karya Saya</a>
+    <!-- =====================================================================
+         4. FLOATING WELCOME CARD (TOP-LEFT)
+         ===================================================================== -->
+    <aside class="studio-welcome-card" id="studio-welcome-card">
+        <button class="welcome-close-btn" id="welcome-card-minimize-btn" aria-label="Sembunyikan kartu sambutan" title="Sembunyikan">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="welcome-eyebrow">
+            <i class="fas fa-feather-pointed"></i> Selamat Datang di Ruang Kerja Saya
         </div>
-        <div class="hero-image">
-            <img src="img/hero-image400.jpg" alt="Karya seni oleh Hendi Saputra">
+        <h1>Seni yang Mengalir,<br><em>Kode yang Menghidupkan.</em></h1>
+        <p>
+            Setiap benda di atas meja ini menyimpan cerita—mulai dari goresan bolpoin 10-warna hingga eksperimen kode web dan automasi.
+        </p>
+        <div class="welcome-hint">
+            <i class="fas fa-hand-pointer"></i>
+            <span>Klik/ketuk objek di meja atau pilih menu di bawah untuk mendekat. Geser layar untuk memutar sudut pandang.</span>
         </div>
-    </main>
-    <footer>
-        <p>&copy; Copyright 2025 Hendi Saputra. All Rights Reserved.</p>
-    </footer>
+    </aside>
 
+    <!-- =====================================================================
+         5. FLOATING BOTTOM DOCK NAVIGATION
+         ===================================================================== -->
+    <nav class="studio-bottom-dock" aria-label="Navigasi Meja Studio 3D">
+        <button class="dock-item active" data-station="overview">
+            <i class="fas fa-compass"></i>
+            <span class="dock-label-full">Meja Utama</span>
+            <span class="dock-label-short">Meja</span>
+        </button>
+        <div class="dock-divider"></div>
+        <button class="dock-item" data-station="art">
+            <i class="fas fa-pen-nib"></i>
+            <span class="dock-label-full">Buku Sketsa (Seni)</span>
+            <span class="dock-label-short">Sketsa</span>
+        </button>
+        <button class="dock-item" data-station="code">
+            <i class="fas fa-laptop-code"></i>
+            <span class="dock-label-full">Monitor (Kode)</span>
+            <span class="dock-label-short">Kode</span>
+        </button>
+        <button class="dock-item" data-station="about">
+            <i class="fas fa-book-open"></i>
+            <span class="dock-label-full">Jurnal (Tentang &amp; CV)</span>
+            <span class="dock-label-short">Jurnal</span>
+        </button>
+        <button class="dock-item" data-station="contact">
+            <i class="fas fa-paper-plane"></i>
+            <span class="dock-label-full">Amplop (Hubungi)</span>
+            <span class="dock-label-short">Kontak</span>
+        </button>
+    </nav>
+
+    <!-- =====================================================================
+         6. STATION PANEL 1: BUKU SKETSA & KACA PEMBESAR (ARTWORKS)
+         ===================================================================== -->
+    <div class="station-panel-backdrop" id="panel-art" role="dialog" aria-modal="true" aria-label="Buku Sketsa Karya Seni">
+        <div class="station-window">
+            <div class="station-window-header">
+                <div class="station-title-group">
+                    <div class="station-icon-badge"><i class="fas fa-pen-nib"></i></div>
+                    <div class="station-title-text">
+                        <h2>Buku Sketsa &amp; Arsiran Pena</h2>
+                        <span>Eksplorasi Realisme Bolpoin 10-Warna di Atas Kertas</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.65rem; align-items: center;">
+                    <a href="portfolio.html" class="hud-pill-btn" style="box-shadow: none;">
+                        <span>Buka Halaman Galeri Penuh</span>
+                        <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="station-close-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Kembali ke Meja</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="station-window-body">
+                <!-- Interactive Flipbook Stage + 2.4x Magnifying Loupe -->
+                <div class="sketchbook-viewer">
+                    <div class="sketchbook-stage" id="sketchbook-stage">
+                        <img src="img/lip-drawing-1.jpg" alt="Karya Seni Hendi Saputra" id="sketchbook-active-img">
+                        <div class="art-magnifier-loupe" id="art-magnifier-loupe"></div>
+                        <div class="loupe-hint-badge">
+                            <i class="fas fa-magnifying-glass-plus"></i> Arahkan kursor untuk kaca pembesar detail tinta
+                        </div>
+                    </div>
+
+                    <div class="sketchbook-story">
+                        <span class="sketchbook-page-counter" id="sketchbook-page-counter">Lembar Sketsa 01 dari 06</span>
+                        <h3 id="sketchbook-active-title">Mempesona</h3>
+                        <em style="color: var(--teal-light); font-family: var(--font-serif); font-size: 1.1rem;" id="sketchbook-active-sub">
+                            Eksplorasi Gradasi Bibir &amp; Kilau Cahaya
+                        </em>
+                        <p id="sketchbook-active-desc">
+                            Sebuah studi realisme bibir perempuan yang digambar sepenuhnya menggunakan bolpoin 10-warna.
+                        </p>
+
+                        <div class="sketchbook-meta-grid">
+                            <div class="meta-item">
+                                <span>Medium Utama</span>
+                                <strong id="sketchbook-active-medium">Bolpoin 10-Warna</strong>
+                            </div>
+                            <div class="meta-item">
+                                <span>Tanggal Selesai</span>
+                                <strong id="sketchbook-active-date">17 Agustus 2025</strong>
+                            </div>
+                        </div>
+
+                        <div class="sketchbook-nav-controls">
+                            <button class="page-turn-btn" id="sketch-prev-btn">
+                                <i class="fas fa-chevron-left"></i>
+                                <span>Halaman Sebelumnya</span>
+                            </button>
+                            <button class="page-turn-btn" id="sketch-next-btn">
+                                <span>Halaman Berikutnya</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6-Artwork Thumbnail Strip -->
+                <div style="margin-bottom: 0.6rem; font-size: 0.82rem; color: var(--text-muted);">
+                    Pilih Lembar Karya di Buku Sketsa:
+                </div>
+                <div class="sketchbook-thumb-strip" id="sketchbook-thumb-strip"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         7. STATION PANEL 2: MONITOR STUDIO & LAB KODE (CODE PROJECTS)
+         ===================================================================== -->
+    <div class="station-panel-backdrop" id="panel-code" role="dialog" aria-modal="true" aria-label="Monitor Proyek Kode">
+        <div class="station-window">
+            <div class="station-window-header">
+                <div class="station-title-group">
+                    <div class="station-icon-badge"><i class="fas fa-laptop-code"></i></div>
+                    <div class="station-title-text">
+                        <h2>Workstation &amp; Eksperimen Kode</h2>
+                        <span>Rekayasa Web Interaktif, Grafik 3D &amp; Automasi Sistem</span>
+                    </div>
+                </div>
+                <button class="station-close-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali ke Meja</span>
+                </button>
+            </div>
+
+            <div class="station-window-body">
+                <div class="monitor-os-grid">
+                    <!-- Code Project 1 -->
+                    <div class="code-project-card">
+                        <div class="code-card-top">
+                            <span class="code-badge">WebGL &amp; Three.js</span>
+                            <i class="fas fa-cube" style="color: var(--teal-light);"></i>
+                        </div>
+                        <h3>3D Interactive Atelier Engine</h3>
+                        <p>
+                            Arsitektur ruang kerja 3D interaktif yang sedang Anda jelajahi saat ini. Dibangun dengan Three.js, pencahayaan multi-mood dinamis, tekstur kanvas prosedural, proyeksi hotspot 3D-ke-2D, serta transisi kamera sinematik GSAP.
+                        </p>
+                        <div class="organic-pills-wrap" style="margin-top: 0.4rem;">
+                            <span class="organic-pill">Three.js</span>
+                            <span class="organic-pill">GSAP</span>
+                            <span class="organic-pill">Web Audio Synth</span>
+                        </div>
+                    </div>
+
+                    <!-- Code Project 2 -->
+                    <div class="code-project-card">
+                        <div class="code-card-top">
+                            <span class="code-badge">Workflow &amp; Integrasi API</span>
+                            <i class="fas fa-network-wired" style="color: var(--warm-accent);"></i>
+                        </div>
+                        <h3>Automated Workflow Pipeline (n8n)</h3>
+                        <p>
+                            Perancangan sistem automasi tugas untuk menghubungkan berbagai layanan berbasis Webhook dan REST API. Memproses transformasi data secara otomatis dan sinkronisasi database real-time tanpa intervensi manual.
+                        </p>
+                        <div class="organic-pills-wrap" style="margin-top: 0.4rem;">
+                            <span class="organic-pill">n8n Automation</span>
+                            <span class="organic-pill">Webhooks</span>
+                            <span class="organic-pill">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Code Project 3 -->
+                    <div class="code-project-card">
+                        <div class="code-card-top">
+                            <span class="code-badge">Creative Frontend</span>
+                            <i class="fas fa-wand-magic-sparkles" style="color: var(--teal-light);"></i>
+                        </div>
+                        <h3>Generative Silk &amp; Ink Canvas</h3>
+                        <p>
+                            Eksperimen seni algoritma menggunakan HTML5 Canvas 2D yang menerjemahkan fungsi gelombang trigonometri menjadi pita sutra yang merespons sentuhan kursor mouse secara halus pada 60 FPS.
+                        </p>
+                        <div class="organic-pills-wrap" style="margin-top: 0.4rem;">
+                            <span class="organic-pill">HTML5 Canvas</span>
+                            <span class="organic-pill">CSS3 3D Tilt</span>
+                            <span class="organic-pill">Responsive UI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Playable Generative Wave Toy inside the Monitor -->
+                <div class="interactive-shader-toy">
+                    <div class="shader-toy-header">
+                        <div>
+                            <h4 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-ivory);">
+                                <i class="fas fa-wave-square" style="color: var(--teal-light);"></i>Kanvas Gelombang Interaktif (Live Sandbox)
+                            </h4>
+                            <span style="font-size: 0.82rem; color: var(--text-muted);">
+                                Klik pada kanvas di bawah ini untuk mengganti harmoni spektrum warna gelombang secara langsung:
+                            </span>
+                        </div>
+                        <a href="https://github.com/hendi-saputra" target="_blank" rel="noopener noreferrer" class="art-btn-secondary" style="padding: 0.55rem 1.25rem; font-size: 0.82rem;">
+                            <i class="fab fa-github"></i>
+                            <span>Kunjungi GitHub Saya</span>
+                        </a>
+                    </div>
+                    <canvas id="mini-generative-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         8. STATION PANEL 3: JURNAL BIOGRAFI & BERKAS CV (ABOUT ME)
+         ===================================================================== -->
+    <div class="station-panel-backdrop" id="panel-about" role="dialog" aria-modal="true" aria-label="Jurnal Biografi Hendi Saputra">
+        <div class="station-window">
+            <div class="station-window-header">
+                <div class="station-title-group">
+                    <div class="station-icon-badge"><i class="fas fa-book-open"></i></div>
+                    <div class="station-title-text">
+                        <h2>Jurnal Pribadi: Antara Tinta &amp; Logika</h2>
+                        <span>Profil, Jejak Pendidikan &amp; Berkas Curriculum Vitae</span>
+                    </div>
+                </div>
+                <button class="station-close-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali ke Meja</span>
+                </button>
+            </div>
+
+            <div class="station-window-body">
+                <div class="story-header-layout" style="margin-bottom: 2.5rem; gap: 2.5rem;">
+                    <div class="story-portrait-frame">
+                        <img src="img/hendi-about.jpg" alt="Potret Hendi Saputra">
+                    </div>
+
+                    <div class="story-narrative">
+                        <div class="artistic-badge">
+                            <i class="fas fa-feather"></i> Seniman &amp; Pengembang Web
+                        </div>
+                        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Halo, Saya Hendi Saputra.</h1>
+                        <p class="story-paragraph">
+                            Saya adalah seorang mahasiswa <strong>Manajemen Informatika</strong> dan lulusan <strong>SMK Teknik Komputer &amp; Jaringan (TKJ)</strong>. Berangkat dari fondasi jaringan komputer dan logika pemrograman, saya menemukan panggilan kreatif dalam menyatukan teknologi web dengan seni lukis bolpoin realistis.
+                        </p>
+                        <p class="story-paragraph">
+                            Bagi saya, merancang arsitektur kode dan mengarsir ribuan garis bolpoin di atas kertas memiliki filosofi yang sama: keduanya menuntut <em>ketelitian, kesabaran tanpa jalan pintas, dan kepekaan terhadap keindahan detail</em>.
+                        </p>
+
+                        <div class="cv-invitation-box" style="margin-top: 1.5rem;">
+                            <div class="cv-invitation-text">
+                                <h4>Berkas Curriculum Vitae (CV)</h4>
+                                <p>Unduh ringkasan profil akademis, keahlian teknis, dan portofolio saya.</p>
+                            </div>
+                            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                                <a href="kosong.html" class="art-btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.86rem;">
+                                    <i class="fas fa-file-invoice"></i>
+                                    <span>Lihat / Unduh CV</span>
+                                </a>
+                                <a href="about.html" class="art-btn-secondary" style="padding: 0.7rem 1.4rem; font-size: 0.86rem;">
+                                    <span>Halaman Profil Penuh</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Odyssey & Skills inside Journal -->
+                <div class="curated-bento-grid">
+                    <div class="curated-card curated-col-4">
+                        <h3>Pendidikan &amp; Fondasi</h3>
+                        <p style="margin-bottom: 0.75rem;">
+                            <strong>2024 — Sekarang:</strong> Mahasiswa Manajemen Informatika (Rekayasa Web &amp; Sistem Informasi).
+                        </p>
+                        <p>
+                            <strong>2021 — 2024:</strong> SMK Teknik Komputer &amp; Jaringan (Infrastruktur Jaringan &amp; Hardware).
+                        </p>
+                    </div>
+                    <div class="curated-card curated-col-4">
+                        <h3>Rekayasa Digital</h3>
+                        <p>Membangun pengalaman web yang responsif, interaktif, dan berestetika tinggi.</p>
+                        <div class="organic-pills-wrap">
+                            <span class="organic-pill">HTML5 &amp; CSS3</span>
+                            <span class="organic-pill">JavaScript</span>
+                            <span class="organic-pill">Three.js</span>
+                            <span class="organic-pill">n8n Automation</span>
+                        </div>
+                    </div>
+                    <div class="curated-card curated-col-4">
+                        <h3>Seni Rupa Tradisional</h3>
+                        <p>Mengabadikan ekspresi dan kedalaman emosi melalui teknik arsiran bolpoin.</p>
+                        <div class="organic-pills-wrap">
+                            <span class="organic-pill">Bolpoin 10-Warna</span>
+                            <span class="organic-pill">Realisme Mata</span>
+                            <span class="organic-pill">Cross-Hatching</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         9. STATION PANEL 4: AMPLOP & SMARTPHONE (CONTACT HUB)
+         ===================================================================== -->
+    <div class="station-panel-backdrop" id="panel-contact" role="dialog" aria-modal="true" aria-label="Hubungi Hendi Saputra">
+        <div class="station-window">
+            <div class="station-window-header">
+                <div class="station-title-group">
+                    <div class="station-icon-badge"><i class="fas fa-paper-plane"></i></div>
+                    <div class="station-title-text">
+                        <h2>Ruang Diskusi &amp; Kolaborasi</h2>
+                        <span>Terhubung untuk Proyek Web, Komisi Seni Pena, atau Pertanyaan</span>
+                    </div>
+                </div>
+                <button class="station-close-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali ke Meja</span>
+                </button>
+            </div>
+
+            <div class="station-window-body">
+                <div class="atelier-layout" style="margin-top: 0;">
+                    <div class="atelier-details">
+                        <h2 style="font-size: 2.1rem;">Mari Ciptakan Sesuatu yang Berkesan</h2>
+                        <p>
+                            Pintu studio saya selalu terbuka untuk diskusi pengembangan website kreatif, kolaborasi teknologi, maupun pemesanan karya lukis bolpoin khusus.
+                        </p>
+
+                        <div class="atelier-channel-list">
+                            <a href="https://wa.me/6281818488170?text=Halo%20Hendi,%20saya%20mengunjungi%20Meja%20Studio%203D%20Anda%20dan%20tertarik%20untuk%20berdiskusi." target="_blank" rel="noopener noreferrer" class="atelier-channel-item">
+                                <div class="atelier-channel-icon" style="color: #2dd4bf;">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <div class="atelier-channel-label">WhatsApp Langsung</div>
+                                    <div class="atelier-channel-value">+62 818-1848-8170</div>
+                                </div>
+                            </a>
+
+                            <a href="https://www.instagram.com/thi.hendiart/" target="_blank" rel="noopener noreferrer" class="atelier-channel-item">
+                                <div class="atelier-channel-icon" style="color: #f472b6;">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <div class="atelier-channel-label">Galeri Seni Instagram</div>
+                                    <div class="atelier-channel-value">@thi.hendiart</div>
+                                </div>
+                            </a>
+
+                            <a href="https://www.tiktok.com/@thi.hendiart" target="_blank" rel="noopener noreferrer" class="atelier-channel-item">
+                                <div class="atelier-channel-icon" style="color: #5eead4;">
+                                    <i class="fab fa-tiktok"></i>
+                                </div>
+                                <div>
+                                    <div class="atelier-channel-label">TikTok Proses Berkarya</div>
+                                    <div class="atelier-channel-value">@thi.hendiart</div>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/hendi-saputra" target="_blank" rel="noopener noreferrer" class="atelier-channel-item">
+                                <div class="atelier-channel-icon" style="color: #cbd5e1;">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div>
+                                    <div class="atelier-channel-label">Repositori Kode</div>
+                                    <div class="atelier-channel-value">github.com/hendi-saputra</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="atelier-form-card">
+                        <form id="atelier-contact-form">
+                            <div class="form-field">
+                                <label for="sender-name">Nama Lengkap Anda</label>
+                                <input type="text" id="sender-name" name="name" placeholder="Tulis nama Anda..." required>
+                            </div>
+                            <div class="form-field">
+                                <label for="sender-email">Alamat Surel (Email)</label>
+                                <input type="email" id="sender-email" name="email" placeholder="nama@email.com" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="sender-message">Gagasan atau Pesan</label>
+                                <textarea id="sender-message" name="message" rows="4" placeholder="Ceritakan rencana proyek atau karya yang ingin kita wujudkan..." required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-action">
+                                <span>Kirimkan Surat Pesan</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         10. CLASSIC 2D EDITORIAL DRAWER (FOR QUICK TRADITIONAL BROWSING)
+         ===================================================================== -->
+    <div class="classic-2d-drawer" id="classic-2d-drawer">
+        <header class="site-header">
+            <a href="index.html" class="brand-identity">
+                <span class="brand-emblem"></span>
+                <span class="brand-name">Hendi Saputra</span>
+                <span class="brand-subtitle">Atelier</span>
+            </a>
+
+            <nav class="navigation-menu">
+                <a href="portfolio.html" class="nav-anchor">Galeri Karya</a>
+                <a href="about.html" class="nav-anchor">Tentang &amp; CV</a>
+                <a href="contact.html" class="nav-anchor">Hubungi</a>
+            </nav>
+
+            <button class="art-btn-primary" id="close-classic-2d-btn" style="padding: 0.6rem 1.35rem; font-size: 0.84rem;">
+                <i class="fas fa-cube"></i>
+                <span>Kembali ke Meja Studio 3D</span>
+            </button>
+        </header>
+
+        <div class="curated-section">
+            <div class="section-prologue">
+                <div class="artistic-badge"><i class="fas fa-compass"></i> Mode Tampilan Galeri Klasik</div>
+                <h2>Satu Visi dalam Dua Medium</h2>
+                <p>Pilih halaman di bawah ini jika Anda lebih menyukai navigasi halaman web tradisional:</p>
+            </div>
+
+            <div class="curated-bento-grid">
+                <div class="curated-card curated-col-4">
+                    <div class="curated-icon-box"><i class="fas fa-pen-nib"></i></div>
+                    <h3>Galeri Karya &amp; Kode</h3>
+                    <p style="margin-bottom: 1.5rem;">Lihat seluruh 6 lukisan bolpoin realistis dan proyek rekayasa perangkat lunak dalam tampilan grid lengkap.</p>
+                    <a href="portfolio.html" class="art-btn-primary" style="width: 100%; justify-content: center;">
+                        <span>Buka Galeri Karya</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="curated-card curated-col-4">
+                    <div class="curated-icon-box"><i class="fas fa-feather"></i></div>
+                    <h3>Kisah &amp; Biografi</h3>
+                    <p style="margin-bottom: 1.5rem;">Perjalanan saya dari SMK Teknik Komputer &amp; Jaringan, Manajemen Informatika, hingga seni lukis pena.</p>
+                    <a href="about.html" class="art-btn-secondary" style="width: 100%; justify-content: center;">
+                        <span>Baca Tentang Saya</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="curated-card curated-col-4">
+                    <div class="curated-icon-box"><i class="fas fa-envelope-open-text"></i></div>
+                    <h3>Kontak &amp; Komisi</h3>
+                    <p style="margin-bottom: 1.5rem;">Hubungi langsung melalui WhatsApp, Instagram Art Gallery, TikTok, atau formulir pesan.</p>
+                    <a href="contact.html" class="art-btn-secondary" style="width: 100%; justify-content: center;">
+                        <span>Hubungi Sekarang</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notice -->
+    <div class="toast-notice" id="toast-notice">
+        <i class="fas fa-check-circle" style="color: var(--teal-light); font-size: 1.4rem;"></i>
+        <div>
+            <strong>Pesan Siap Dikirim</strong>
+            <p style="font-size: 0.88rem; color: var(--text-silver); margin: 0;">Membuka aplikasi surel Anda...</p>
+        </div>
+    </div>
+
+    <!-- Three.js & GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- 3D Atelier Engine & Shared Scripts -->
+    <script src="atelier3d.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
